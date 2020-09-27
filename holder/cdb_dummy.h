@@ -3,6 +3,8 @@
 
 #include "cdb_holder.h"
 
+#include <QMap>
+
 
 
 class CDB_Dummy : public CDB_Holder
@@ -26,13 +28,16 @@ public:
     bool add_container(QString &strNonDestrCode, int &id);
 
 private:
-
+    QMap<QString, int> mapContainers;
+    QMap<QString, QString> mapRFIDContainers;
 
 
     // data for tests
     static const int RFID_CNT = 3;
     static const int NONDESTR_CNT = 1;
 
+
+    static const char * RFID_REGISTER;
     static const char * RFID_PLACE_1;
     static const char * RFID_PLACE_2;
     static const char * RFID_PLACE_3;

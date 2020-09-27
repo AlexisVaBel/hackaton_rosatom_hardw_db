@@ -3,13 +3,14 @@
 
 #include <iostream>
 
+const char * CDB_Dummy::RFID_REGISTER = "Register_container_RFID";
 const char * CDB_Dummy::RFID_PLACE_1 = "OOVT";
 const char * CDB_Dummy::RFID_PLACE_2 = "OOGP";
 const char * CDB_Dummy::RFID_PLACE_3 = "Production";
 
 CDB_Dummy::CDB_Dummy()
 {
-
+    mapContainers.clear();
 }
 
 CDB_Dummy::~CDB_Dummy()
@@ -41,9 +42,10 @@ QPair<QString, int> CDB_Dummy::get_main_dev()
 QList<QPair<QString, int> > CDB_Dummy::get_devs()
 {
     QList<QPair<QString, int> >  lst;
-    lst.append(qMakePair(RFID_PLACE_1, 2));
-    lst.append(qMakePair(RFID_PLACE_2, 3));
-    lst.append(qMakePair(RFID_PLACE_3, 4));
+    lst.append(qMakePair(RFID_REGISTER, 2));
+    lst.append(qMakePair(RFID_PLACE_1, 3));
+    lst.append(qMakePair(RFID_PLACE_2, 4));
+    lst.append(qMakePair(RFID_PLACE_3, 5));
 
     QList<QPair<QString, int> >  &ret_lst = lst;
     return ret_lst;  // to make copy of returning value
@@ -69,18 +71,25 @@ bool CDB_Dummy::unregister_container(QString &strRFIDCode)
 
 bool CDB_Dummy::register_container(QString &strNonDestrCode, QString &strRFIDCode)
 {
-    std::cout << __PRETTY_FUNCTION__ << std::endl;
+    std::cout << __PRETTY_FUNCTION__ << std::endl;    
+    if(mapRFIDContainers.contains(strRFIDCode)) return false;
+    mapContainers.keys().count();
+    mapRFIDContainers.insert(strRFIDCode, strNonDestrCode);
     return  true;
 }
 
 bool CDB_Dummy::append_moving(uint32_t &iDevID, QString &strContainerRFIDCode)
 {
     std::cout << __PRETTY_FUNCTION__ << std::endl;
+    if(mapRFIDContainers.contains(strContainerRFIDCode)) return false; //no such rfid
     return  true;
 }
 
 bool CDB_Dummy::add_container(QString &strNonDestrCode, int &id)
 {
-    std::cout << __PRETTY_FUNCTION__ << std::endl;
+//    std::cout << __PRETTY_FUNCTION__ << std::endl;
+    if(mapContainers.contains(strNonDestrCode)) return false;
+    id = mapContainers.keys().count();
+    mapContainers.insert(strNonDestrCode, id);
     return  true;
 }
