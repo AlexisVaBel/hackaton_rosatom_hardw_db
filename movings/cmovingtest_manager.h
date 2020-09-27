@@ -17,6 +17,7 @@ public:
     void test_income_register_set_rfid();
     void test_income_register_set_rfid_notenough();
     void test_income_register_move_in_order();
+    void test_income_register_move_in_disorder();
 
 signals:
 

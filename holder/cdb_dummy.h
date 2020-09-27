@@ -47,6 +47,8 @@ private:
     static const char * NONDESTRUCT;
 
 
+    uint32_t get_last_move(QString const & strContainerRFIDCode);
+
 
     // CDB_Holder interface
 

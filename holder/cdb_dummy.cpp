@@ -85,7 +85,11 @@ bool CDB_Dummy::append_moving(const uint32_t &iDevID, const QString &strContaine
 //    std::cout << __PRETTY_FUNCTION__ << " " << strContainerRFIDCode.toStdString() << std::endl;
     if(!mapRFIDContainers.contains(strContainerRFIDCode)) return false; //no such rfid
 
-
+    auto lastDev = get_last_move(strContainerRFIDCode);
+    if(lastDev > iDevID) {
+        std::cerr << " wrong move for " << mapRFIDContainers.value(strContainerRFIDCode).toStdString() << " to " << iDevID << " previos pos was " << lastDev << std::endl;
+        return false;
+    }
     std::cout << mapRFIDContainers.value(strContainerRFIDCode).toStdString() << " moving to " << iDevID<< std::endl;
     lstOfMovings.push_back(qMakePair(strContainerRFIDCode, iDevID));
     return  true;
@@ -99,4 +103,16 @@ bool CDB_Dummy::add_container(QString &strNonDestrCode, int &id)
     mapContainers.insert(strNonDestrCode, id);
     std::cout << "nondestr code "<< strNonDestrCode.toStdString() << std::endl;
     return  true;
+}
+
+uint32_t CDB_Dummy::get_last_move(const QString &strContainerRFIDCode)
+{
+
+    for(auto i = (lstOfMovings.length()-1); i >=0 ; --i ){
+        if(lstOfMovings.at(i).first.compare(strContainerRFIDCode) == 0){
+            return lstOfMovings.at(i).second;
+        }
+    }
+
+    return 0;
 }
