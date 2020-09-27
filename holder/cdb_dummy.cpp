@@ -71,17 +71,23 @@ bool CDB_Dummy::unregister_container(QString &strRFIDCode)
 
 bool CDB_Dummy::register_container(QString &strNonDestrCode, QString &strRFIDCode)
 {
-    std::cout << __PRETTY_FUNCTION__ << std::endl;    
+//    std::cout << __PRETTY_FUNCTION__ << std::endl;
     if(mapRFIDContainers.contains(strRFIDCode)) return false;
-    mapContainers.keys().count();
+
+    std::cout << "register code " << strRFIDCode.toStdString() << std::endl;
+
     mapRFIDContainers.insert(strRFIDCode, strNonDestrCode);
     return  true;
 }
 
 bool CDB_Dummy::append_moving(const uint32_t &iDevID, const QString &strContainerRFIDCode)
 {
-    std::cout << __PRETTY_FUNCTION__ << std::endl;
-    if(mapRFIDContainers.contains(strContainerRFIDCode)) return false; //no such rfid
+//    std::cout << __PRETTY_FUNCTION__ << " " << strContainerRFIDCode.toStdString() << std::endl;
+    if(!mapRFIDContainers.contains(strContainerRFIDCode)) return false; //no such rfid
+
+
+    std::cout << mapRFIDContainers.value(strContainerRFIDCode).toStdString() << " moving to " << iDevID<< std::endl;
+    lstOfMovings.push_back(qMakePair(strContainerRFIDCode, iDevID));
     return  true;
 }
 
@@ -91,5 +97,6 @@ bool CDB_Dummy::add_container(QString &strNonDestrCode, int &id)
     if(mapContainers.contains(strNonDestrCode)) return false;
     id = mapContainers.keys().count();
     mapContainers.insert(strNonDestrCode, id);
+    std::cout << "nondestr code "<< strNonDestrCode.toStdString() << std::endl;
     return  true;
 }

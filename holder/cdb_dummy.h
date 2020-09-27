@@ -31,6 +31,8 @@ private:
     QMap<QString, int> mapContainers;
     QMap<QString, QString> mapRFIDContainers;
 
+    QList<QPair<QString, int>> lstOfMovings;
+
 
     // data for tests
     static const int RFID_CNT = 3;
