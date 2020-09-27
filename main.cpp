@@ -10,7 +10,8 @@ int main(int argc, char ** argv){
 //    mng->process();
     CMovingTest_Manager *mng = new CMovingTest_Manager();
 
-    mng->test_from_income_to_outcome();
+    mng->test_income_register_set_rfid();
+    mng->test_income_register_move_in_order();
 
     delete mng;
 

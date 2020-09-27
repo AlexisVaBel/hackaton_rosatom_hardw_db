@@ -27,7 +27,7 @@ public:
     // "container" transport methods
     virtual bool unregister_container(QString &strRFIDCode) = 0;  // then come to out we need to free it
     virtual bool register_container(QString &strNonDestrCode, QString &strRFIDCode) = 0 ; // connect nondestruct code with rfid
-    virtual bool append_moving(uint32_t &iDevID, QString &strContainerRFIDCode) = 0; // some device tell us - we crossed some area
+    virtual bool append_moving(uint32_t const &iDevID, QString const &strContainerRFIDCode) = 0; // some device tell us - we crossed some area
 
     virtual bool add_container(QString &strNonDestrCode, int &id) = 0; // if no nondestrcode for container - ask to add
 

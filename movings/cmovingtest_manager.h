@@ -14,7 +14,8 @@ class CMovingTest_Manager : public QObject
 public:
     explicit CMovingTest_Manager(QObject *parent = nullptr);
 
-    void test_from_income_to_outcome();
+    void test_income_register_set_rfid();
+    void test_income_register_move_in_order();
 
 signals:
 

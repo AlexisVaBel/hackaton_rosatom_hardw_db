@@ -24,7 +24,7 @@ public:
     QList<QPair<QString, int>> get_containers();
     bool unregister_container(QString &strRFIDCode);
     bool register_container(QString &strNonDestrCode, QString &strRFIDCode);
-    bool append_moving(uint32_t &iDevID, QString &strContainerRFIDCode);
+    bool append_moving(uint32_t const &iDevID, const QString &strContainerRFIDCode);
     bool add_container(QString &strNonDestrCode, int &id);
 
 private:

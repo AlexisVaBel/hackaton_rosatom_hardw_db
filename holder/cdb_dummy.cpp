@@ -78,7 +78,7 @@ bool CDB_Dummy::register_container(QString &strNonDestrCode, QString &strRFIDCod
     return  true;
 }
 
-bool CDB_Dummy::append_moving(uint32_t &iDevID, QString &strContainerRFIDCode)
+bool CDB_Dummy::append_moving(const uint32_t &iDevID, const QString &strContainerRFIDCode)
 {
     std::cout << __PRETTY_FUNCTION__ << std::endl;
     if(mapRFIDContainers.contains(strContainerRFIDCode)) return false; //no such rfid
